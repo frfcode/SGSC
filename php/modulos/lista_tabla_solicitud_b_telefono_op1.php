@@ -1,0 +1,42 @@
+<?php 
+session_start();
+include 'conexion.php';
+$i = 1; $id = $_SESSION['id'];
+if($QueryB = mysqli_query($link,"SELECT * FROM registro WHERE id_usuario = '$id' AND estatus_generado = 'NO' AND tipo_solicitud = 'SB' AND telefono != '' AND tipo_opcion = 1 ")){
+    if(mysqli_num_rows($QueryB)){
+        echo '
+        <table class="table text-center">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Telefono</th>
+            </tr>
+        </thead>
+        <tbody>
+        ';
+        while ($row = mysqli_fetch_array($QueryB)) {
+            $uno = substr($row["telefono"],0,3);
+            $dos = substr($row["telefono"],3,4);
+            $tres = substr($row["telefono"],6,9);
+            $telefono = '('.$uno.')-'.$dos.'-'.$tres; 
+            echo '
+            <tr id="'.$row["id_contador"].'">
+            <td id="count_'.$i.'">'.$i.'</td>
+            <td data-target="telefono">'.$telefono.'</td>
+            </tr>';
+            $i++;   
+        }
+        echo '
+        </tbody>
+        </table>
+        ';
+    }else{
+        echo '
+        <h3 class="text-center mt-2">NO HAY DATOS</h3>
+                ';
+    } 
+               
+}else{
+      echo '<h4 class="text-center">ERROR DE BASE DE DATOS</h4>';         
+    }
+?>

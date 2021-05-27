@@ -1,0 +1,82 @@
+<?php
+require_once __DIR__ . '/vendor/autoload.php';
+include 'conexion.php';
+date_default_timezone_set('America/Santo_Domingo');
+session_start();
+$id = $_SESSION['id'];
+$usuario = $_SESSION['User'];
+$code = $_GET['code'];
+$solicitud = 'NUEVO';
+$count = 1;
+$date = date("d-m-Y");
+$vali = '';
+$sql_datos = "SELECT *
+FROM registro
+INNER JOIN solicitud
+ON registro.id_solicitud = solicitud.id_solicitud
+RIGHT JOIN grupos
+ON grupos.id_grupo = solicitud.id_grupo
+RIGHT JOIN dirigido
+ON  dirigido.id_dirigido = solicitud.id_dirigido
+RIGHT JOIN usuarios
+ON  usuarios.id_usuario = solicitud.id_usuario
+WHERE estatus_generado = 'SI' AND solicitud.num_solicitud_4 = $code";
+
+$BusquedaTelefonos = mysqli_query($link,$sql_datos);
+$BusquedaNombres = mysqli_query($link,$sql_datos);
+$BusquedaEmpresas = mysqli_query($link,$sql_datos);
+$BusquedaHeader = mysqli_query($link,$sql_datos);
+								if(mysqli_num_rows($BusquedaHeader)>0){
+									while($row = mysqli_fetch_array($BusquedaHeader)){
+                                        $solicitudID = $row['num_solicitud_4'];
+                                        if($vali != $row["num_solicitud_4"]){
+                                            $plantilla .= '
+                                        <body>
+                                        <h1>Solicitud 1 - A</h1>
+                                            <header class="clearfix">
+                                              <div id="project">
+                                              <div><span class="tittle">NUMERO:</span> <span>'.$solicitudID.'</span></div>
+                                              <div><span class="tittle">A LA: </span> <span>'.$row['texto_dirigido'].'</span></div>
+                                              <div><span class="tittle">DE LA: </span> <span>'.$row['usuario'].'</span></div>
+                                              <div><span class="tittle">GRUPO: </span>  <span>'.$row['grupo'].'</span></div>
+                                              <div><span class="tittle">FECHA: </span> <span>'.$row['fecha_num_solicitud_1'].'</span></div>
+                                             <div><span class="tittle">PRIORIDAD: </span> <span>'.$row['prioridad'].'</span></div>
+                                             ';
+                                            $vali = $row["num_solicitud_4"];
+                                        }else{
+                                            $vali = $row["num_solicitud_4"];
+                                        } 
+                                    }
+                                }
+                            
+                        $plantilla .='</div>
+                            </header>';
+$plantilla .= '
+    <p>Los números de teléfonos ';
+    if(mysqli_num_rows($BusquedaTelefonos)>0){
+        while($row = mysqli_fetch_array($BusquedaTelefonos)){
+            $uno = substr($row["telefono"],0,3);
+            $dos = substr($row["telefono"],3,3);
+            $tres = substr($row["telefono"],6,9);
+            $telefono = '('.$uno.')-'.$dos.'-'.$tres;
+            $plantilla .=  '<b>'.$telefono.'</b>, ';
+        }
+        $plantilla .= ' a nombre de ';
+        while($row = mysqli_fetch_array($BusquedaNombres)){
+            $plantilla .= '<b>'.$row['nombre'].'</b>, ';
+        }
+        $plantilla .= 'de la compañía telefónica ';
+        while($row = mysqli_fetch_array($BusquedaEmpresas)){
+            $plantilla .= '<b>'.$row['empresa'].'</b>, ';
+        }
+    }
+    $plantilla .= '</p></body>'; 
+    
+$mpdf = new \Mpdf\Mpdf();
+$css = file_get_contents('css/pdf.css');
+$export = substr($usuario, 0, 2);
+$mpdf->SetTitle(strtoupper($export).'_'.$code.'_S4_'.$date);
+$mpdf->writeHTML($css, 1);
+$mpdf->WriteHTML($plantilla);
+$mpdf->Output(strtoupper($export).'_'.$code.'_S4_'.$date.'.pdf','I');
+?>

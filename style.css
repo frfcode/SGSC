@@ -1,0 +1,279 @@
+/*
+Developer By: Francisco Garcia
+Description: Style.css for all Documents
+Date: 25-08-2018
+Republic Dominic
+@frfweb
+NOTA: El Desarrollador que lea esto me pagaron 15 mil pesos
+dominicanos por esto.. saca tu propia conclusion
+*/
+/* TIPOGRAFIA*/
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+
+/*----------- GENERAL ----------------------*/
+.target-login label, .target-login span, .target-login button, .tittle-user p, .nav-item a,
+.form-registro label, .form-generar label, .modal-body p, #confirmarsolicitud label,
+.modal-body label {
+    font-family: 'Open Sans Condensed', sans-serif;
+    color: #EFEFEF;
+}
+.target-login h3, .modal-title, .menu-right h3, .form-registro h3{
+    font-family: 'Russo One', sans-serif;
+    color: #EFEFEF;
+}
+.target-admin-margin label, .modal-body label{
+    font-family: 'Open Sans Condensed', sans-serif;
+    color: #235a81;
+}
+.target-admin-margin h3, .modal-title{
+    font-family: 'Russo One', sans-serif;
+    color: #235a81;
+}
+.nav li a{
+    color: black;
+}
+.bg-default{
+    /*background: #414956;*/
+    background: #F3F3F3;
+}
+#value{
+    visibility: hidden;
+    position: absolute;
+}
+input[type=number]{
+    -moz-appearance: textfield;
+    -webkit-appearance:textfield;
+}
+.modal-body .col-6{
+    margin-bottom: 2%;
+}
+table thead{
+    font-size: 10px;
+}
+table tbody{
+    font-size: 12px;
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+/*--------------------------------------------*/
+/*----------- index.html ----------------------*/
+
+.target-login{
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 10%;
+    padding: 5%;
+    border: 5px solid #999999;
+    border-radius: 2%;
+}
+.target-login h3{
+    color: #999999;
+}
+.target-login label{
+    color: #999999;
+    font-weight: bold;
+}
+
+.btn-login{
+    background-color: #235A81;
+    color: white;
+}
+
+.btn-login:hover{
+    background-color: #307BB0;
+    color: white;
+}
+/*--------------------------------------------*/
+/*----------- admin.php ----------------------*/
+.menu-right{
+    position: fixed;
+    height: 100%;
+    background-color: #888888;
+    border-right: 4px solid #bbb;
+    z-index: 1;
+    padding-top: 2%;
+}
+.menu-right h3{
+    padding-bottom: 2%;
+    border-bottom: 3px solid white;
+}
+.tittle-user{
+    padding-top: 2%;
+    background-color: #888888;
+    color: #bbb;
+    border-bottom: 3px solid white;
+    font-weight: bold;
+}
+ul {
+    list-style:none;
+}
+circle {
+    padding-top: 2%;
+}
+.icons-menu-usuario{
+    position: absolute;
+    right: 10%;
+    top: 5%;
+}
+.icons-menu-group{
+    position: absolute;
+    right: 10%;
+    top: 25%;
+}
+.target-admin-margin{
+    margin-top: 3%;
+    margin-left: 30%;
+
+}
+.tabla-scroll-x{
+    overflow: scroll;
+    height: 400px;
+}
+.table td{
+    padding: .5rem;
+}
+/*--------------------------------------------*/
+/*----------- default.php ----------------------*/
+.btn-default{
+    border: 1.5em;
+    background: #888888;
+    color: white;
+    font-weight: bold;
+    margin-top: 2%;
+}
+.btn-default:hover{
+    background: #707070;
+    color: white;
+}
+.table-scroll{
+    overflow-y: scroll;
+    height: 300px;
+    overflow-x: hidden;
+}
+.table-job{
+    width: 100%;
+    background: #ECECEC;
+}
+.table-job tr{
+    border-bottom: 1px solid black;
+    font-size: 12px;
+
+}
+.table-job tbody tr td, .table-job thead tr th{
+    padding: 0.5em;
+}
+/*--------------------------------------------*/
+/*----------- Sub Menu Right ----------------------*/
+.hide, .hideselect{
+    display: none;
+}
+.show{
+    display: inline;
+}
+
+/*--------------------------------------------*/
+/*----------- Media Querys ----------------------*/
+@media only screen and (max-width: 480px) and (min-width: 300px) {
+    
+  }
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+
+   }
+  
+@media only screen and (min-width: 769px) and (max-width: 1024px){
+    /*.target-admin-margin{*/
+    /*    margin-left: 28%;*/
+    /*}    */
+    .target-admin-margin{
+        margin-left: 25%;
+    }
+    .table th{
+        padding: .4rem;
+    }
+    .table thead th{
+        width: 10%;
+    }
+}
+  
+@media only screen and (min-width: 1025px) and (max-width: 1200px){
+    .target-admin-margin{
+        margin-left: 25%;
+    }
+}
+  
+@media only screen and (min-width: 1201px){
+    .tittle-user p, .jquery-accordion-menu ul li a, input, select, textarea, .modal-body label {
+        font-size: 18px !important;
+    }
+    .target-admin-margin{
+        margin-left: 25%;
+    }
+    table thead tr th, table tbody tr td, .table-job tbody tr td a{
+        font-size: 14px;
+    }
+    input[type=checkbox]{
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media only screen and (min-width: 1920px){
+    .tittle-user p, .jquery-accordion-menu ul li a, input, select, textarea {
+        font-size: 25px !important;
+    }
+    .menu-right h3, .target-admin-margin h3, h5, .target-login h3{
+        font-size: 45px !important;
+    }
+    .jquery-accordion-menu ul li a img{
+        width: 40px !important;
+    }
+    .tittle-user p, .jquery-accordion-menu .submenu-indicator{
+        font-size: 35px !important;
+    }
+    button, label, .target-login label{
+        font-size: 30px !important;
+    }
+    .target-admin-margin{
+        margin-left: 25%;
+    }
+    svg{
+        width: 35px !important;
+        height: 30px;
+    }
+    table thead tr th, table tbody tr td, .table-job tbody tr td a {
+        font-size: 22px !important;
+    }
+    table tbody tr td a.btn-sm{
+        font-size: 1.3rem !important;
+        padding: 0.5rem 0.5rem !important;
+    }
+    .modal-dialog{
+        max-width: 1000px;
+        margin: 1.0rem auto;
+    }
+    input[type=checkbox]{
+        width: 30px;
+        height: 30px;
+    }
+    .target-login{
+        margin-left: 20%;
+        margin-right: 20%;
+        margin-top: 20%;
+    }
+    /*#tablaSB .table-job thead tr th{
+        width: 50%;
+    }*/
+    .col-4 .form-check label, .col-3 .form-check label{
+        margin-left: 5%;
+    }
+}

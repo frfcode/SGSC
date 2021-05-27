@@ -1,0 +1,121 @@
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+a {
+  color: #5D6975;
+  text-decoration: underline;
+}
+
+body {
+  position: relative;
+  width: 21cm;  
+  height: 29.7cm; 
+  margin: 0 auto; 
+  color: #001028;
+  background: #FFFFFF; 
+  font-family: Arial, sans-serif; 
+  font-size: 12px; 
+  font-family: Arial;
+}
+
+header {
+  padding: 10px 0;
+  margin-bottom: 30px;
+}
+
+h1 {
+  border-top: 1px solid  black;
+  border-bottom: 1px solid  black;
+  color: black;
+  font-size: 2.4em;
+  line-height: 1.4em;
+  font-weight: bold;
+  text-align: center;
+  margin: 0 0 20px 0;
+}
+/*
+#project {
+  float: left;
+}*/
+
+#project .tittle {
+  color: black;
+  font-weight: bold;
+  text-align: right;
+  width: 52px;
+  margin-right: 10px;
+  display: inline-block;
+  font-size: 1em;
+}
+#project span, #project p {
+  color: black;
+  width: 52px;
+  display: inline-block;
+  font-size: 1em;
+  padding-right: 50px;
+}
+
+#company {
+  float: right;
+  text-align: right;
+}
+
+#project div,
+#company div {
+  white-space: nowrap;        
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin-bottom: 20px;
+}
+
+table th,
+table td {
+  text-align: center;
+}
+
+table th {
+  padding: 5px 20px;
+  color: black;
+  border: 1px solid black;
+  white-space: nowrap;        
+  font-weight: normal;
+}
+
+table .service,
+table .desc {
+  text-align: center;
+}
+
+table td {
+  padding: 5px;
+  text-align: center;
+  border: 1px solid black;
+}
+
+table td.service,
+table td.desc {
+  vertical-align: top;
+}
+
+table td.unit,
+table td.qty,
+table td.total {
+  font-size: 1.2em;
+}
+
+#notices .tittle{
+	font-size: 1.3em;
+	color: black;
+	font-weight: bold;
+}
+#notices .notice {
+  color: black;
+  font-size: 1.2em;
+  margin-bottom: 1em;
+}

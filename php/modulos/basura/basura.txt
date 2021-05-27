@@ -1,0 +1,601 @@
+/*
+if(isset($_POST['btnBuscar'])){
+    $consulta = $_POST['consulta'];
+    $id = $_SESSION['id'];
+    $salida = ''; $vali = ''; $valigrupo = '';
+    if(isset($consulta) || $consulta != ''){
+        //$q = mysqli_real_escape_string($link,$consulta);
+        $query = "SELECT *
+        FROM registro
+        INNER JOIN solicitud
+        ON registro.id_solicitud = solicitud.id_solicitud
+        RIGHT JOIN grupos
+        ON solicitud.id_grupo = grupos.id_grupo WHERE solicitud.id_usuario = '$id'
+        AND solicitud.id_solicitud LIKE '%".$consulta."%' OR registro.estado_general LIKE '%".$consulta."%' 
+        OR DATE_FORMAT(solicitud.fecha, '%d-%m-%Y') LIKE '%".$consulta."%' 
+        OR nombre LIKE '%".$consulta."%' OR telefono LIKE '%".$consulta."%' OR empresa LIKE '%".$consulta."%'
+        OR grupos.grupo LIKE '%".$consulta."%' OR tipo_solicitud LIKE '%".$consulta."%' OR registro.estatus_solicitud LIKE '%".$consulta."%'";
+    }else{
+        $query = "SELECT *
+        FROM registro
+        INNER JOIN solicitud
+        ON registro.id_solicitud = solicitud.id_solicitud
+        RIGHT JOIN grupos
+        ON solicitud.id_grupo = grupos.id_grupo WHERE registro.id_usuario = '$id'";
+    }
+    $result = mysqli_query($link,$query);
+    if(mysqli_num_rows($result)>0){
+            $salida .='
+                    <table class="table text-center table-dark table-responsive tabla-scroll-x">
+                            <thead>
+                                <tr>
+                                <th># Solicitud</th>
+                                <th>Nombre</th>
+                                <th>Telefono</th>
+                                <th>Compañia</th>
+                                <th>Nacionalidad</th>
+                                <th>Grupo</th>
+                                <th>Tipo Solicitud</th> 
+                                <th>Fecha</th> 
+                                <th>Estatus Solicitud</th>
+                                <th>Estado General</th>                                   
+                                </tr>
+                            </thead>
+                            <tbody>
+                    ';
+            while ($fila = mysqli_fetch_array($result)) {
+                $idgrupo = $fila['id_grupo'];
+                $salida .='
+                    <tr>
+                        <td>'. $fila['id_solicitud'].'</td>
+                        <td>'.$fila["nombre"].'</td>
+                        <td>'.$fila["telefono"].'</td>
+                        <td>'.$fila["empresa"].'</td>
+                        <td>'.$fila["pais"].'</td>
+                        ';
+                        if($resultgrupo =  mysqli_query($link,"SELECT * FROM grupos WHERE id_grupo = '$idgrupo'")){
+                            while($rowGrupo = mysqli_fetch_array($resultgrupo)){
+                            $salida .= '<td>'.$fila["grupo"].'</td>';
+                            }
+                        }
+                $salida.='
+                        <td>'.$fila["tipo_solicitud"].'</td>
+                        <td>'.$fila["fecha"].'</td>
+                        <td>'.$fila["estado_general"].'</td>
+                        <td>'.$fila["estatus_solicitud"].'</td>
+                    </tr>
+                    ';
+            }
+            $salida .='
+            </tbody>
+            </table>
+            ';  
+    }else{
+        $salida.= ' <h3 class="text-center text-white">NO HAY DATOS</h3>';
+        }
+    echo $salida;
+}*/
+
+/*
+if(isset($_POST['btnBuscarInputs'])){
+    $grupo = $_POST['grupo'];
+    $fecha = $_POST['fecha'];
+    $usuario = $_POST['usuario'];
+    $estatus = $_POST['estatus'];
+    $estado = $_POST['estado'];
+    $empresa = $_POST['empresa'];
+    $solicitud = $_POST['solicitud'];
+    //$consulta = $_POST['consulta'];
+    $id = $_SESSION['id'];
+    $salida = ''; $vali = ''; $valigrupo = '';
+    
+        //$q = mysqli_real_escape_string($link,$consulta);
+    $query = "SELECT *
+    FROM registro
+    INNER JOIN solicitud
+    ON registro.id_solicitud = solicitud.id_solicitud
+    LEFT JOIN grupos
+    ON solicitud.id_grupo = grupos.id_grupo
+    LEFT JOIN usuarios
+    ON solicitud.id_usuario = usuarios.id_usuario WHERE registro.estado_general LIKE '%".$estado."%' 
+    OR solicitud.id_solicitud LIKE '%".$solicitud."%'
+    OR DATE_FORMAT(solicitud.fecha, '%d-%m-%Y') LIKE '%".$fecha."%' 
+    OR usuarios.usuario LIKE '%".$usuario."%' OR empresa LIKE '%".$empresa."%'
+    OR grupos.id_grupo LIKE '%".$grupo."%' OR registro.estatus_solicitud LIKE '%".$estatus."%'";
+    $result = mysqli_query($link,$query);
+    if(mysqli_num_rows($result)>0){
+            $salida .='
+                    <table class=" table text-center table-dark table-responsive tabla-scroll-x">
+                            <thead>
+                                <tr>
+                                <th># Solicitud</th>
+                                <th>Usuario</th>
+                                <th>Nombre</th>
+                                <th>Telefono</th>
+                                <th>Compañia</th>
+                                <th>Nacionalidad</th>
+                                <th>Grupo</th>
+                                <th>Tipo Solicitud</th> 
+                                <th>Fecha</th> 
+                                <th>Estatus Solicitud</th>
+                                <th>Estado General</th>                                   
+                                </tr>
+                            </thead>
+                            <tbody>
+                    ';
+            while ($fila = mysqli_fetch_array($result)) {
+                $idgrupo = $fila['id_grupo'];
+                $salida .='
+                    <tr>
+                        <td>'. $fila['id_solicitud'].'</td>
+                        <td>'.$fila["usuario"].'</td>
+                        <td>'.$fila["nombre"].'</td>
+                        <td>'.$fila["telefono"].'</td>
+                        <td>'.$fila["empresa"].'</td>
+                        <td>'.$fila["pais"].'</td>';
+                        if($resultgrupo =  mysqli_query($link,"SELECT * FROM grupos WHERE id_grupo = '$idgrupo'")){
+                            while($rowGrupo = mysqli_fetch_array($resultgrupo)){
+                            $salida .= '<td>'.$fila["grupo"].'</td>';
+                            }
+                        }
+                       $salida .=' <td>'.$fila["tipo_solicitud"].'</td>
+                        <td>'.$fila["fecha"].'</td>
+                        <td>'.$fila["estado_general"].'</td>
+                        <td>'.$fila["estatus_solicitud"].'</td>
+                    </tr>
+                    ';
+            }
+            $salida .='
+            </tbody>
+            </table>
+            ';  
+    }else{
+        $salida.= ' <h3 class="text-center text-white">NO HAY DATOS</h3>';
+        }
+    echo $salida;
+}*/
+//APROBAR SOLICITUDES
+/*
+if(isset($_POST['aprobar'])){
+    $solicitud =  $_POST['aprobar'];
+    $user = $_SESSION['User'];
+    $codigo_concat = 'codigoAprobacion4'.$solicitud;
+    $tipo_concat = 'tiposolicitud'.$solicitud;
+    $vigencia_concat = 'vigenciaAP4'.$solicitud;
+    $vigencia = $_POST[$vigencia_concat];
+    $codigo = $_POST[$codigo_concat];
+    $tipo = $_POST[$tipo_concat];
+    $buscarAprobacion = mysqli_query($link, "SELECT * FROM  solicitud  WHERE id_solicitud = '$solicitud' ");
+    $resultAprobacion = mysqli_fetch_array($buscarAprobacion);
+    $checked_contador = count($_POST['aprobacionestado']);
+    if($checked_contador == 0){
+            echo 'Complete los campos';
+        }else{
+            $item = $_POST['aprobacionestado'];
+            for ($i = 0; $i < $checked_contador; $i++) {
+                $asignar = $i + 1;
+                $check = $item[$i];
+                if ($check == 's1') {
+                    if (mysqli_query($link, "UPDATE solicitud SET aprobacion1 = 'APROBADO', usuario1 = '$user', fecha_usuario1 = '$date' WHERE id_solicitud = '$solicitud'")) {
+                        if($tipo == 'SA'){
+                            echo "<script languaje='javascript'> 
+                            window.open('exportAprobacionS1SA.php?code=$solicitud','_blank');
+                            location.href = '../admin.php';
+                            </script>";
+                        }
+                        if($tipo == 'SB'){
+                            header('Location: exportSB.php?id='.$solicitud);
+                        }
+                    } else {
+                        echo mysqli_error($link);
+                        echo 'error';
+                    }
+                }
+                if ($check == 's2') {
+                    if ($resultAprobacion['aprobacion1'] == 'APROBADO') {
+                        if (mysqli_query($link, "UPDATE solicitud SET aprobacion2 = 'APROBADO', usuario2 = '$user', fecha_usuario2 = '$date' WHERE id_solicitud = '$solicitud'")) {
+                            if($tipo == 'SA'){
+                                echo "<script languaje='javascript'> 
+                                window.open('exportAprobacionS2SA.php?code=$solicitud','_blank');
+                                location.href = '../admin.php';
+                                </script>";
+                            }
+                            if($tipo == 'SB'){
+                                header('Location: exportSB.php?id='.$solicitud);
+                            }
+                        } else {
+                            echo mysqli_error($link);
+                            echo 'error';
+                        }
+                    } else {
+                        echo 'No se aprobado la solicitud 1';
+                    }
+                }
+                if ($check == 's3') {
+                    if ($resultAprobacion['aprobacion1'] == 'APROBADO' && $resultAprobacion['aprobacion2'] == 'APROBADO') {
+                        if (mysqli_query($link, "UPDATE solicitud SET aprobacion3 = 'APROBADO', usuario3 = '$user', fecha_usuario3 = '$date' WHERE id_solicitud = '$solicitud'")) {
+                            if($tipo == 'SA'){
+                                echo "<script languaje='javascript'>  
+                                window.open('exportAprobacionS3SA.php?code=$solicitud','_blank');
+                                location.href = '../admin.php';</script>";
+                            }
+                            if($tipo == 'SB'){
+                                header('Location: exportSB.php?id='.$solicitud);
+                            }
+                        } else {
+                            echo mysqli_error($link);
+                            echo 'error';
+                        }
+                    } else {
+                        echo 'No se aprobado la solicitud 1';
+                    }
+                }
+                if ($check == 's4') {
+                    if ($resultAprobacion['aprobacion1'] == 'APROBADO' && $resultAprobacion['aprobacion2'] == 'APROBADO' && $resultAprobacion['aprobacion3'] == 'APROBADO') {
+                        if (mysqli_query($link, "UPDATE solicitud SET aprobacion4 = 'APROBADO', usuario4 = '$user', fecha_usuario4 = '$date' WHERE id_solicitud = '$solicitud'")) {
+                            if($tipo == 'SA'){
+                                echo "<script languaje='javascript'>  
+                                window.open('exportAprobacionS4SA.php?code=$solicitud','_blank');
+                                location.href = '../admin.php';</script>";
+                            }
+                            if($tipo == 'SB'){
+                                header('Location: exportSB.php?id='.$solicitud);
+                            }
+                        } else {
+                            echo mysqli_error($link);
+                            echo 'error';
+                        }
+                    } else {
+                        echo 'No se aprobado la solicitud 1';
+                    }
+                }
+                if ($check == 's5') {
+                    if (mysqli_query($link, "UPDATE solicitud SET aprobacion5 = 'APROBADO', usuario5 = '$user', fecha_usuario5 = '$date' WHERE id_solicitud = '$solicitud'")) {
+                        if($tipo == 'SA'){
+                            echo "<script languaje='javascript'> 
+                            window.open('exportAprobacionS5SA.php?code=$solicitud','_blank');
+                            location.href = '../admin.php';</script>";
+                        }
+                        if($tipo == 'SB'){
+                            header('Location: exportSB.php?id='.$solicitud);
+                        }
+                    } else {
+                        echo mysqli_error($link);
+                        echo 'error';
+                    }
+                }
+            }
+        }
+}*/
+
+//$q = mysqli_real_escape_string($link,$consulta);
+
+
+/*
+if(isset($_POST['btnEliminarDirigido'])){
+     $fila = $_POST['dirigido'];
+    if($result = mysqli_query($link,"DELETE FROM dirigido WHERE texto_dirigido = '$fila'")){
+        echo "1";
+     }else{
+         echo "-2";
+     }
+}*/
+
+
+
+/*
+                if(mysqli_query($link, "UPDATE solicitud SET aprobacion2 = 'APROBADO', usuario2 = '$user', fecha_usuario2 = '$date', id_vigencia = '$vigencia' WHERE id_solicitud = '$solicitud' AND codigo2 = '$code'")){
+                  if(mysqli_query($link, "UPDATE registro SET estatus_solicitud = '$estado' WHERE id_solicitud = '$solicitud'")){
+                        echo $code;
+                    }else{
+                        echo "-2";
+                    }
+                }*/
+            //}else{
+              //  echo "-2";
+            //}   
+        //}
+    //}
+
+    //if($searchVigencia = mysqli_query($link,"SELECT * FROM vigencia WHERE id_vigencia = '$vigencia'")){
+        //while ($filaVigencia = mysqli_fetch_array($searchVigencia)) {
+                //$insertVigencia = $filaVigencia['id_vigencia'];
+
+
+
+
+//if(mysqli_affected_rows($link)){
+            //if($searchDirigido = mysqli_query($link,"SELECT * FROM dirigido WHERE texto_dirigido = '$dirigido'")){
+              //  while ($filaDirigido = mysqli_fetch_array($searchDirigido)) {
+                //    $insertDirigido = $filaDirigido['id_dirigido'];
+               // }
+                //if($searchVigencia = mysqli_query($link,"SELECT * FROM vigencia WHERE texto_vigencia = '$vigencia'")){
+                    //while ($filaVigencia = mysqli_fetch_array($searchVigencia)) {
+                     //   $insertVigencia = $filaVigencia['id_vigencia'];
+                    //}
+                    //if($searchTiempo = mysqli_query($link,"SELECT * FROM tiempo WHERE texto_tiempo = '$tiempo'")){
+                      //  while ($filaTiempo = mysqli_fetch_array($searchTiempo)) {
+                        //    $insertTiempo =  $filaTiempo['id_tiempo'];
+                          //  break;
+                        //}
+                        //if($resultInsert = mysqli_query($link,"INSERT INTO solicitud VALUES ('$code', '$date','$hora','$formato','$id','','','$insertDirigido','$insertTiempo','$detalle','','','','','','','','','','','','$nota')")){
+                            //echo '<div class="alert alert-info" role="alert">CODIGO SOLICITUD - '.$code.'</div>'; 
+                            
+
+
+
+                           //}
+                        //else{
+                           
+                        //}
+                //    }
+                //}else{
+                  //  echo "-2";
+                //} 
+            //}else{
+              //  echo "-1";
+            //}
+        //}else{
+          //  echo '-7';
+        //}  
+
+
+
+
+        /*
+    if($resultID = mysqli_query($link,"SELECT id_solicitud FROM registro  WHERE id_usuario = $id AND id_solicitud = $code ")){
+        if(mysqli_num_rows($resultID)){
+            $code = rand(0,99999);
+        }
+    }*/
+    /*
+    if($result = mysqli_query($link,"UPDATE registro SET estatus_generado='SI', id_solicitud ='$code', prioridad = '$prioridad', estatus_solicitud = '$solicitud', estado_general = 'ACTIVO' WHERE id_usuario = $id AND estatus_generado = 'NO'")){
+        if(mysqli_affected_rows($link)){
+            if($searchDirigido = mysqli_query($link,"SELECT * FROM dirigido WHERE texto_dirigido = '$dirigido'")){
+                while ($filaDirigido = mysqli_fetch_array($searchDirigido)) {
+                    $insertDirigido = $filaDirigido['id_dirigido'];
+                }
+                //if($searchVigencia = mysqli_query($link,"SELECT * FROM vigencia WHERE texto_vigencia = '$vigencia'")){
+                    //while ($filaVigencia = mysqli_fetch_array($searchVigencia)) {
+                     //   $insertVigencia = $filaVigencia['id_vigencia'];
+                    //}
+                    if($searchTiempo = mysqli_query($link,"SELECT * FROM tiempo WHERE texto_tiempo = '$tiempo'")){
+                        while ($filaTiempo = mysqli_fetch_array($searchTiempo)) {
+                            $insertTiempo =  $filaTiempo['id_tiempo'];
+                            break;
+                        }
+                        if($resultInsert = mysqli_query($link,"INSERT INTO solicitud VALUES ('$code', '$date','$hora','$formato','$id','','','$insertDirigido','$insertTiempo','$detalle','','','','','','','','','','','','$nota')")){
+                            //echo '<div class="alert alert-info" role="alert">CODIGO SOLICITUD - '.$code.'</div>'; 
+                            echo $code;
+                        }
+                        else{
+                            echo "-3";
+                        }
+                //    }
+                }else{
+                    echo "-2";
+                } 
+            }else{
+                echo "-1";
+            }
+        }else{
+            echo '-7';
+        }   
+    }else{
+        echo "-2";
+    }*/
+
+
+
+
+    /*
+                    if($searchDirigido = mysqli_query($link,"SELECT * FROM dirigido WHERE texto_dirigido = '$dirigido'")){
+                        while ($filaDirigido = mysqli_fetch_array($searchDirigido)) {
+                            $insertDirigido = $filaDirigido['id_dirigido'];
+                        }*/
+                        //if($searchVigencia = mysqli_query($link,"SELECT * FROM vigencia WHERE texto_vigencia = '$vigencia'")){
+                            //while ($filaVigencia = mysqli_fetch_array($searchVigencia)) {
+                             //   $insertVigencia = $filaVigencia['id_vigencia'];
+                            //}
+
+                             //    }
+                        //}else{
+                         //   echo "-2";
+                        //} 
+
+
+//GENERAR SOLICITUD B
+/*
+if(isset($_POST['btnGenerarB'])){
+    $id = $_SESSION['id'];
+    $code = rand(0,99999);
+    $dirigido = $_POST['dirigido'];
+    $solicitud = 'NUEVO';
+    $prioridad = $_POST['prioridad'];
+    $detalle = $_POST['detalle'];
+    $tiempo = $_POST['tiempo'];
+    $nota = $_POST['nota'];
+    $hora = date("h:i:s");
+    $formato =  date("A");
+    $insertDirigido = '';
+    $insertVigencia = '';
+    $insertTiempo = '';
+    if($resultID = mysqli_query($link,"SELECT id_solicitud FROM registro  WHERE id_usuario = $id AND id_solicitud = $code ")){
+        if(mysqli_num_rows($resultID)){
+            $code = rand(0,99999);
+        }
+    }
+    if($result = mysqli_query($link,"UPDATE registro SET estatus_generado='SI', id_solicitud ='$code', prioridad = '$prioridad', estatus_solicitud = '$solicitud', estado_general = 'ACTIVO' WHERE id_usuario = $id AND estatus_generado = 'NO'")){
+        if(mysqli_affected_rows($link)){
+            if($searchDirigido = mysqli_query($link,"SELECT * FROM dirigido WHERE texto_dirigido = '$dirigido'")){
+                while ($filaDirigido = mysqli_fetch_array($searchDirigido)) {
+                    $insertDirigido = $filaDirigido['id_dirigido'];
+                }
+                //if($searchVigencia = mysqli_query($link,"SELECT * FROM vigencia WHERE texto_vigencia = '$vigencia'")){
+                    //while ($filaVigencia = mysqli_fetch_array($searchVigencia)) {
+                     //   $insertVigencia = $filaVigencia['id_vigencia'];
+                    //}
+                    if($searchTiempo = mysqli_query($link,"SELECT * FROM tiempo WHERE texto_tiempo = '$tiempo'")){
+                        while ($filaTiempo = mysqli_fetch_array($searchTiempo)) {
+                            $insertTiempo =  $filaTiempo['id_tiempo'];
+                            break;
+                        }
+                        if($resultInsert = mysqli_query($link,"INSERT INTO solicitud VALUES ('$code', '$date','$hora','$formato','$id','','','$insertDirigido','$insertTiempo','$detalle','','','','','','','','','','','','$nota')")){
+                            //echo '<div class="alert alert-info" role="alert">CODIGO SOLICITUD - '.$code.'</div>'; 
+                            echo $code;
+                        }
+                        else{
+                            echo "-3";
+                        }
+                //    }
+                }else{
+                    echo "-2";
+                } 
+            }else{
+                echo "-1";
+            }
+        }else{
+            echo '-7';
+        }   
+    }else{
+        echo "-2";
+    }
+}
+*/
+
+
+
+/*                                      
+                    if($op == 1){                                                       
+                        if($result = mysqli_query($link,"INSERT INTO registro VALUES ('','$tiposolicitud','','','','','$meses','','$id','','','NO','')")){
+                            echo "1";
+                        }else{
+                            echo "-2";
+                        }
+                    }
+                    if($op == 2){                                                      
+                        if($result = mysqli_query($link,"INSERT INTO registro VALUES ('','$tiposolicitud','','','','','','$empresa','$id','','','NO','')")){
+                            echo "1";
+                        }else{
+                            echo "-2";
+                        }
+                    }                                                                   
+                    if($op == 3){                                                      
+                        if($result = mysqli_query($link,"INSERT INTO registro VALUES ('','$tiposolicitud','','','','$pais','','','$id','','','NO','')")){
+                            echo "1";
+                        }else{
+                            echo "-2";
+                        }
+                    }
+                    if($op == 4){                                                                                                
+                        if($result = mysqli_query($link,"INSERT INTO registro VALUES ('','$tiposolicitud','','','','$pais','$meses','$empresa','$id','','','NO','')")){
+                            echo "1";
+                        }else{
+                            echo "-2";
+                        }
+                    }*/
+                //}
+            //}
+    //if($serach = mysqli_query($link, "SELECT * FROM registro WHERE id_usuario = '$id' AND estatus_generado = 'NO'")){
+               // if(mysqli_num_rows($serach)>0){
+
+                   id="table-tlf"
+
+
+                   <!-- Aprobar Solicitudes Estado 4  
+<form id="aprobarSolicitudPaso2">
+  <div class="target-admin-margin hide" id="AprobarSolicitudEstado2">
+    <div class="row">
+      <div class="col-12">
+        <h3>Aprobar Solicitud - ESTADO 4</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12" id="resultadoAprobarEstado2"></div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div id="aprobarSoliciudEstado2" class="tabla-scroll-x"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <button type="submit" class="btn btn-block btn-default">Aprobar</button>
+      </div>
+    </div>
+  </div>
+</form>-->
+<!-- Aprobar Solicitudes Estado 5  
+<form id="aprobarSolicitudPaso3">
+  <div class="target-admin-margin hide" id="AprobarSolicitudEstado3">
+    <div class="row">
+      <div class="col-12">
+        <h3>Aprobar Solicitud - ESTADO 5</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12" id="resultadoAprobarEstado3"></div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div id="aprobarSoliciudEstado3" class="tabla-scroll-x"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <button type="submit" class="btn btn-block btn-default">Aprobar</button>
+      </div>
+    </div>
+  </div>
+</form>-->
+
+ <!--  Modal Confirmar Borrar Registro -->
+  <!--<div class="modal fade" id="ModalSolitud4" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content bg-default">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Confirmación</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form id="registrosEliminar-solicitud-a">
+          <div class="modal-body">
+            <p>Dseaa borrar los registros existentes</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn btn-primary">Confirmar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>-->
+
+
+  <!-- 
+                  <div class="row">
+                    <div class="col-12">
+                        <h3>Solicitud 1 2</h3>
+                    </div>
+                  </div>-->
+    <!--
+                  <div class="row">
+                    <div class="col-12">
+                        <h3>Aprobar Solicitud - ESTADO 3</h3>
+                    </div>
+                  </div> -->
+    <!-- <div class="row">
+                      <div class="col-12" id="resultadoAprobarEstado1"></div>
+                    </div> -->
+    <!-- <div class="row">
+      <<div class="col-12" id="aprobarSoliciudEstado1">
+      </div>
+    </div> -->
+    <!--
+                  <div class="row">
+                    <div class="col-12">
+                    <button type="submit" class="btn btn-block btn-default">Aprobar</button>
+                    </div>
+                  </div> -->
