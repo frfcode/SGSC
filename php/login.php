@@ -20,7 +20,7 @@ if($fields == true){
                         echo "<script>location.href = 'default.php'</script>";
                         }
                         if($fila["rol"] == 'admin'){
-                        echo "<script>location.href = 'admin.php'</script>";
+                        echo "<script>location.href = 'template.php'</script>";
                         }
                     } 
                 else {

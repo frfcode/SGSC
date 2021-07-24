@@ -11263,3 +11263,302 @@ body {
   font-size: 0.75rem;
   border-radius: 0.25rem !important;
 }
+
+/* ---------- */
+/*
+Developer By: Francisco Garcia and Leonardo Ruiz
+Description: style.css for all Documents
+Date: 25-08-2020
+From: Venezuela
+License: MIT
+*/
+/* TIPOGRAFIA*/
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+
+/*----------- GENERAL ----------------------*/
+.panel-content-width{
+  width: 100%;
+}
+
+.target-login label, .target-login span, .target-login button, .title-user p, .nav-item a,
+.form-registro label, .form-generar label, .modal-body p, #confirmarsolicitud label,
+.modal-body label {
+    font-family: 'Poppins', sans-serif;
+    color: #B8B8B8;
+    font-weight:bold;
+}
+.target-login h3, .modal-title, .menu-panel-right h3, .form-registro h3{
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    font-weight:bold;
+}
+.target-admin-margin label, .modal-body label{
+    font-family: 'Open Sans Condensed', sans-serif;
+    color: #235a81;
+}
+.target-admin-margin h3, .modal-title{
+    font-family: 'Russo One', sans-serif;
+    color: #235a81;
+}
+.nav li a{
+    color: black;
+}
+.bg-default{
+    background: #F5F5F5;
+}
+#value{
+    visibility: hidden;
+    position: absolute;
+}
+input[type=number]{
+    -moz-appearance: textfield;
+    -webkit-appearance:textfield;
+}
+.modal-body .col-6{
+    margin-bottom: 2%;
+}
+table thead{
+    font-size: 10px;
+}
+table tbody{
+    font-size: 12px;
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+/*--------------------------------------------*/
+/*----------- index.html ----------------------*/
+.container-login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+.target-login{
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5%;
+    border: 5px solid #B8B8B8;
+    border-radius: 2%;
+    width: 400px;
+    box-shadow: 5px 5px 5px 5px rgb(0 0 0 / 25%);
+}
+.target-login h3{
+    color: #B8B8B8;
+}
+.target-login label{
+    color: #B8B8B8;
+    font-weight: bold;
+}
+
+.btn-login{
+    background-color: #333;
+    color: white !important;
+}
+
+.btn-login:hover{
+    background-color: #5C5C5C;
+    color: white !important;
+}
+/*--------------------------------------------*/
+/*----------- admin.php ----------------------*/
+.menu-panel-right{
+    position: fixed;
+    height: 100%;
+    background-color: #F5F5F5;
+    border-right: 5px solid #333;
+    z-index: 3;
+    width: 20%;
+}
+.menu-panel-right h3{
+    padding-bottom: 20px;
+    border-bottom: 5px solid #333;
+    padding-top: 20px;
+    color: #B8B8B8;
+}
+.title-user{
+    padding-top: 30px;
+    background-color: #F5F5F5;
+    color: #bbb;
+    border-bottom: 5px solid #333;
+    font-weight: bold;
+    box-shadow: 5px 5px 5px 5px rgb(0 0 0 / 20%);
+    position: fixed;
+    z-index: 2;
+}
+ul {
+    list-style:none;
+}
+circle {
+    padding-top: 2%;
+}
+.icons-menu-usuario{
+    position: absolute;
+    right: 10%;
+    top: 5%;
+}
+.icons-menu-group{
+    position: absolute;
+    right: 10%;
+    top: 25%;
+}
+.target-admin-margin{
+    margin-top: 7%;
+    margin-left: 30%;
+
+}
+.tabla-scroll-x{
+    overflow: scroll;
+    height: 400px;
+}
+.table td{
+    padding: .5rem;
+}
+/*--------------------------------------------*/
+/*----------- default.php ----------------------*/
+.btn-default{
+    border: 1.5em;
+    background: #888888;
+    color: white;
+    font-weight: bold;
+    margin-top: 2%;
+    width: 100%;
+}
+.btn-default:hover{
+    background: #707070;
+    color: white;
+}
+.table-scroll{
+    overflow-y: scroll;
+    height: 300px;
+    overflow-x: hidden;
+}
+.table-job{
+    width: 100%;
+    background: #ECECEC;
+}
+.table-job tr{
+    border-bottom: 1px solid black;
+    font-size: 12px;
+
+}
+.table-job tbody tr td, .table-job thead tr th{
+    padding: 0.5em;
+}
+/*--------------------------------------------*/
+/*----------- Sub Menu Right ----------------------*/
+ .hide, .hideselect{
+    display: none;
+}
+.show{
+    display: inline;
+} 
+
+/*--------------------------------------------*/
+/*----------- Media Querys ----------------------*/
+@media only screen and (max-width: 480px) and (min-width: 300px) {
+    
+  }
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+
+   }
+  
+@media only screen and (min-width: 769px) and (max-width: 1024px){
+    /*.target-admin-margin{*/
+    /*    margin-left: 28%;*/
+    /*}    */
+    .target-admin-margin{
+        margin-left: 25%;
+    }
+    .table th{
+        padding: .4rem;
+    }
+    .table thead th{
+        width: 10%;
+    }
+}
+  
+@media only screen and (min-width: 1025px) and (max-width: 1200px){
+    .target-admin-margin{
+        margin-left: 25%;
+    }
+}
+  
+@media only screen and (min-width: 1201px){
+    .title-user p, .jquery-accordion-menu ul li a, input, select, textarea, .modal-body label {
+        font-size: 18px !important;
+    }
+    .target-admin-margin{
+        margin-left: 20%;
+    }
+    table thead tr th, table tbody tr td, .table-job tbody tr td a{
+        font-size: 14px;
+    }
+    input[type=checkbox]{
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media only screen and (min-width: 1920px){
+    .title-user p, .jquery-accordion-menu ul li a, input, select, textarea {
+        font-size: 25px !important;
+    }
+    .menu-panel-right h3, .target-admin-margin h3, h5, .target-login h3{
+        font-size: 45px !important;
+    }
+    .jquery-accordion-menu ul li a img{
+        width: 40px !important;
+    }
+    .title-user p, .jquery-accordion-menu .submenu-indicator{
+        font-size: 35px !important;
+    }
+    button, label, .target-login label{
+        font-size: 30px !important;
+    }
+    .target-admin-margin{
+        margin-left: 25%;
+    }
+    svg{
+        width: 35px !important;
+        height: 30px;
+    }
+    table thead tr th, table tbody tr td, .table-job tbody tr td a {
+        font-size: 22px !important;
+    }
+    table tbody tr td a.btn-sm{
+        font-size: 1.3rem !important;
+        padding: 0.5rem 0.5rem !important;
+    }
+    .modal-dialog{
+        max-width: 1000px;
+        margin: 1.0rem auto;
+    }
+    input[type=checkbox]{
+        width: 30px;
+        height: 30px;
+    }
+    .target-login{
+        margin-left: 20%;
+        margin-right: 20%;
+        margin-top: 20%;
+    }
+    /*#tablaSB .table-job thead tr th{
+        width: 50%;
+    }*/
+    .col-4 .form-check label, .col-3 .form-check label{
+        margin-left: 5%;
+    }
+}
