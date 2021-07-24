@@ -1,9 +1,10 @@
 <?php 
-include 'modulos/session_user.php';
+include 'modulos/session_user_default.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+
+<head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -73,23 +74,7 @@ include 'modulos/session_user.php';
 
                                     </nav>
                                 </div>
-                                <a class="nav-link" href="#" id="panel-tiempo">Nota (Tiempo)</a>
-                                <a class="nav-link" href="#" id="panel-dirigido">A quien va Dirigido</a>
-                            </nav>
-                        </div>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                            data-bs-target="#collapseSection" aria-expanded="false" aria-controls="collapseSection">
-                            <div class="sb-nav-link-icon"><i class="fas fa-user"></i></i></div>
-                            Usuarios
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                        </a>
-                        <div class="collapse" id="collapseSection" aria-labelledby="headingOne"
-                            data-bs-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="#" id="usuariocrear">Crear</a>
-                                <a class="nav-link" href="#" id="usuarioeliminar">Eliminar</a>
-                                <a class="nav-link" href="#" id="usuariolista">Historial Cuentas Creadas</a>
-                                <a class="nav-link" href="#" id="grupo">Grupo</a>
+                                <a href="#" class="nav-link" id="grupo">Crear Grupo</a>
                             </nav>
                         </div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
@@ -101,18 +86,11 @@ include 'modulos/session_user.php';
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="#" id="consultagrupo">Grupo</a>
                                 <a class="nav-link" href="#" id="buscarregistro">Registros</a>
                                 <a class="nav-link" href="#" id="estadosolicitud">Estatus De Solicitud</a>
                             </nav>
                         </div>
-                        <a class="nav-link" href="#" id="plantillacrear">
-                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></i></div>
-                            Plantillas
-                        </a>
-                        <a class="nav-link" href="#" id="aprobar">
-                            <div class="sb-nav-link-icon"><i class="fas fa-vote-yea"></i></div>
-                                Aprobar Solicitud
-                        </a>
                         <a class="nav-link" href="../php/logout.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-lock"></i></div>
                             Cerrar Session

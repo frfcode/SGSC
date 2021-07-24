@@ -17,7 +17,7 @@ if($fields == true){
                         $_SESSION['perfil'] = $fila["rol"];
                         $_SESSION['id'] = $fila["id_usuario"];
                         if($fila["rol"] == 'default'){
-                        echo "<script>location.href = 'default.php'</script>";
+                        echo "<script>location.href = 'default2.php'</script>";
                         }
                         if($fila["rol"] == 'admin'){
                         echo "<script>location.href = 'template.php'</script>";
