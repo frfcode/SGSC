@@ -63,13 +63,13 @@
                                     </a>
                                     <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
                                         <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="login.html">Solicitud 1-A</a>
-                                            <a class="nav-link" href="register.html">Solicitud 1-B</a>
+                                            <a class="nav-link" href="#">Solicitud 1-A</a>
+                                            <a class="nav-link" href="#">Solicitud 1-B</a>
 
                                         </nav>
                                     </div>
-                                    <a class="nav-link" href="password.html">Nota (Tiempo)</a>
-                                    <a class="nav-link" href="password.html">A quien va Dirigido</a>
+                                    <a class="nav-link" href="#">Nota (Tiempo)</a>
+                                    <a class="nav-link" href="#">A quien va Dirigido</a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
@@ -79,10 +79,10 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="layout-static.html">Crear</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">Eliminar</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">Historial Cuentas Creadas</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">Grupo</a>
+                                    <a class="nav-link" href="#">Crear</a>
+                                    <a class="nav-link" href="#">Eliminar</a>
+                                    <a class="nav-link" href="#">Historial Cuentas Creadas</a>
+                                    <a class="nav-link" href="#">Grupo</a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
@@ -92,8 +92,8 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="layout-static.html">Registros</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">Estatus De Solicitud</a>
+                                    <a class="nav-link" href="#">Registros</a>
+                                    <a class="nav-link" href="#">Estatus De Solicitud</a>
                                 </nav>
                             </div>
                             <a class="nav-link" href="#">
